@@ -1,11 +1,22 @@
+// Tente de récupérer l'élément ayant pour identifiant 'loginForm' dans le document.
+// Le '?' (appelé optional chaining) est utilisé pour s'assurer que si cet élément n'existe pas, 
+// aucune erreur ne sera générée et le code suivant ne sera pas exécuté.
 document.getElementById('loginForm')?.addEventListener('submit', function(event) {
+    // Empêche le comportement par défaut de l'événement de soumission du formulaire, 
+    // ce qui empêche la page de se recharger.
     event.preventDefault();
 
+    // Récupère la valeur entrée dans l'élément ayant pour identifiant 'email'.
     const email = document.getElementById('email').value;
+    
+    // Récupère la valeur entrée dans l'élément ayant pour identifiant 'password'.
     const password = document.getElementById('password').value;
 
+    // Appelle la fonction 'login' avec l'email et le mot de passe récupérés précédemment 
+    // pour traiter la connexion.
     login(email, password);
 });
+
 
 function login(email, password) {
     fetch('http://localhost:5678/api/users/login', {
@@ -35,13 +46,7 @@ function login(email, password) {
     });
 }
 
-// Ajout fonction de déconnexion :
-//function logout() {
-//    localStorage.removeItem('token'); 
-////    toggleLoginState(false); // Ajouté
- //   alert('Déconnexion réussie');
- //   window.location.href = '/login'; 
-//}
+
 
 // Ajout fonction de déconnexion :
 function logout() {
