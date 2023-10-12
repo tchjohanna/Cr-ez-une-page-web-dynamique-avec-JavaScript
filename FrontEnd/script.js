@@ -83,6 +83,13 @@ const token = localStorage.getItem('token');//on récupere le token
 if (token) {
     btnUpdate.style.display = 'inline-block';
 }
+//masquer les filtres de catégorie
+const contentCategories = document.querySelector('.categories');
+if (token) {
+    btnUpdate.style.display = 'inline-block';
+    contentCategories.style.display = 'none';  // Cette ligne masque les filtres de catégorie
+}
+
 
 // pour supprimer un work
 const deleteWork = (id) => {
@@ -253,24 +260,35 @@ const validate = () => {
     }
 }
 
-// preview image
 const previewFile = () => {
-    // on récupere l'élément img
+    // Sélectionne l'élément d'affichage de l'image (probablement une balise <img>).
     const preview = document.querySelector('#preview');
-    // on récupere l'élément input file
+    
+    // Sélectionne l'input de type "file" et récupère le premier fichier (s'il y en a).
     const file = document.querySelector('#image').files[0];
-    // on crée un objet FileReader
+    
+    // Crée un nouvel objet FileReader pour lire le contenu du fichier.
     const reader = new FileReader();
-    // on ajoute un event pour afficher l'image
+    
+    // Ajoute un gestionnaire d'événement au reader pour exécuter le code suivant 
+    // une fois que le fichier est complètement lu.
     reader.addEventListener("load", function () {
+        // Attribue l'URL de l'image lue au src de l'élément d'affichage.
         preview.src = reader.result;
+        
+        // Affiche l'élément de prévisualisation d'image.
         preview.style.display = 'inline-block';
-        contentInputImage.style.display = 'none';
 
+        // Cache un élément probablement utilisé pour afficher l'input ou une image par défaut.
+        // (NOTE : Vous devez déclarer 'contentInputImage' quelque part dans votre code pour que cela fonctionne)
+        contentInputImage.style.display = 'none';
     }, false);
-    // si on a bien un fichier on lit le fichier
+    
+    // Si un fichier a été sélectionné, lit le fichier comme une URL de données.
+    // Cela déclenchera l'événement "load" ci-dessus une fois que le fichier sera complètement lu.
     if (file) {
         reader.readAsDataURL(file);
     }
 }
+
 
