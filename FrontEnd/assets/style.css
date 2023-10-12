@@ -638,3 +638,9 @@ label[for="image"] {
     border: none;
     outline: none; /* Pour supprimer le contour qui peut apparaître lorsqu'il est cliqué ou concentré */
 }
+
+nav ul li #logoutBtn  {
+    border: none;
+    background-color: transparent;
+    font: inherit;
+}
